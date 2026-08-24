@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Edit Profile - JobTrackr{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Edit Profile</h2>
+
+  <div class="card p-4 shadow-sm">
+    <form method="POST">
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" value="{{ request.form.get('username', user.username) }}" required>
+        {% if 'username' in form.errors %}
+          <div class="text-danger">{{ form.errors['username'] }}</div>
+        {% endif %}
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" name="email" class="form-control" value="{{ request.form.get('email', user.email) }}" required>
+        {% if 'email' in form.errors %}
+          <div class="text-danger">{{ form.errors['email'] }}</div>
+        {% endif %}
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Available Jobs - JobTrackr{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">Available Jobs</h2>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <table class="table table-hover">
+    <thead class="table-primary">
+      <tr>
+        <th>Job Title</th>
+        <th>Company</th>
+        <th>Posted</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for job in jobs %}
+      <tr>
+        <td>{{ job.job_title }}</td>
+        <td>{{ job.company }}</td>
+        <td>{{ job.posted_date }}</td>  <!-- ✅ Fixed -->
+        <td>
+          <a href="{{ url_for('apply_to_available_job', job_id=job.id) }}" class="btn btn-outline-primary btn-sm">
+            Apply
+          </a>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4" class="text-center">No jobs currently available.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

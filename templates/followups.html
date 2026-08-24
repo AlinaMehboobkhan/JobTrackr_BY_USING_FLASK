@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Upcoming Follow-Ups - JobTrackr{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h3 class="mb-4 text-center">Upcoming Follow-Ups</h3>
+
+  <!-- Flash messages -->
+  <div class="container mt-3">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  {% if followups %}
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="table-info">
+        <tr>
+          <th>Job Title</th>
+          <th>Company</th>
+          <th>Follow-Up Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for job in followups %}
+        <tr>
+          <td>{{ job.job_title }}</td>
+          <td>{{ job.company }}</td>
+          <td>{{ job.follow_up_date }}</td>
+          <td><span class="badge bg-info">{{ job.status }}</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="text-center">No upcoming follow-ups.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #0d6efd;
+}
+
+.navbar-brand, .nav-link, .navbar-nav .nav-link {
+    color: #fff !important;
+}
+
+.nav-link:hover {
+    background-color: #0b5ed7;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+footer {
+    background-color: #f1f1f1;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    border-top: 1px solid #ddd;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-secondary:hover,
+.btn-outline-success:hover {
+    opacity: 0.9;
+    transform: scale(0.98);
+    transition: transform 0.2s ease; /* Smooth transition */
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.alert {
+    margin-top: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1.5rem; /* Adjust padding for smaller screens */
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0d6efd;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0b5ed7;
+}

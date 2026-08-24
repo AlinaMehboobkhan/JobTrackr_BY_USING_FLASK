@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - JobTrackr{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Welcome, {{ current_user.username }}!</h2>
+
+<!-- Flash messages -->
+<div class="container mt-3">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-4">
+    <div class="card text-bg-primary shadow">
+      <div class="card-body">
+        <h5 class="card-title">Your Applications</h5>
+        <p class="card-text fs-4">{{ jobs|length }}</p>
+        <a href="{{ url_for('job_list') }}" class="btn btn-light btn-sm">View All</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-bg-info shadow">
+      <div class="card-body">
+        <h5 class="card-title">Upcoming Follow-Ups</h5>
+        <p class="card-text fs-4">{{ followups|length }}</p>
+        <a href="{{ url_for('followups') }}" class="btn btn-light btn-sm">View</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-bg-success shadow">
+      <div class="card-body">
+        <h5 class="card-title">Available Jobs</h5>
+        <p class="card-text fs-4">{{ available_jobs|length }}</p>
+        <a href="{{ url_for('available_jobs') }}" class="btn btn-light btn-sm">Browse</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Action Buttons -->
+<div class="mb-4 text-end">
+  <a href="{{ url_for('add_job') }}" class="btn btn-primary">+ Add Job Application</a>
+  
+  {% if current_user.is_admin %}
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-warning ms-2">Admin Dashboard</a>
+  {% endif %}
+</div>
+
+<h4>Recent Job Applications</h4>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="table-secondary">
+      <tr>
+        <th>Job Title</th>
+        <th>Company</th>
+        <th>Status</th>
+        <th>Applied</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for job in jobs[:5] %}
+      <tr>
+        <td>{{ job.job_title }}</td>
+        <td>{{ job.company }}</td>
+        <td><span class="badge bg-info">{{ job.status }}</span></td>
+        <td>{{ job.applied_date }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Add Job Application - JobTrackr{% endblock %}
+
+{% block content %}
+<div class="form-container">
+  <h2 class="text-center mb-4">Add Job Application</h2>
+  <form method="POST" action="{{ url_for('add_job') }}">
+    <div class="mb-3">
+      <label for="job_title" class="form-label">Job Title</label>
+      <input type="text" class="form-control" name="job_title" id="job_title" required>
+    </div>
+    <div class="mb-3">
+      <label for="company" class="form-label">Company</label>
+      <input type="text" class="form-control" name="company" id="company" required>
+    </div>
+    <div class="mb-3">
+      <label for="status" class="form-label">Status</label>
+      <select class="form-select" name="status" id="status" required>
+        <option value="Pending">Pending</option>
+        <option value="Interviewing">Interviewing</option>
+        <option value="Accepted">Accepted</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="applied_date" class="form-label">Applied Date</label>
+      <input type="date" class="form-control" name="applied_date" id="applied_date" required>
+      <div class="date-hint">Format: YYYY-MM-DD (e.g., 2025-06-30)</div>
+    </div>
+    <div class="mb-3">
+      <label for="follow_up_date" class="form-label">Follow Up Date</label>
+      <input type="date" class="form-control" name="follow_up_date" id="follow_up_date">
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Add Job</button>
+  </form>
+</div>
+
+<style>
+  .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .date-hint {
+    font-size: 0.875rem;
+    color: #6c757d;
+    margin-top: 0.25rem;
+  }
+  button:active {
+    transform: scale(0.98);
+  }
+</style>
+{% endblock %}

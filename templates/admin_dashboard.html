@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard - JobTrackr{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">Welcome, Admin!</h2>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="card text-bg-primary mb-3 text-center">
+        <div class="card-body">
+          <h5 class="card-title">Total Registered Users</h5>
+          <p class="card-text fs-4">{{ total_users }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-bg-success mb-3 text-center">
+        <div class="card-body">
+          <h5 class="card-title">Available Jobs Posted</h5>
+          <p class="card-text fs-4">{{ total_available_jobs }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-bg-warning mb-3 text-center">
+        <div class="card-body">
+          <h5 class="card-title">Job Applications</h5>
+          <p class="card-text fs-4">{{ total_job_apps }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <a href="{{ url_for('manage_available_jobs') }}" class="btn btn-outline-primary">Manage Available Jobs</a>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">Back to Dashboard</a>
+  </div>
+</div>
+{% endblock %}
